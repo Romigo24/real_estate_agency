@@ -29,4 +29,3 @@ class OwnerAdmin(admin.ModelAdmin):
 
 admin.site.register(Complaint, ComplaintAdmin)
 admin.site.register(Flat, FlatAdmin)
-admin.site.register(Owner, OwnerAdmin)
