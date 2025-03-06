@@ -14,7 +14,8 @@ class Owner(models.Model):
     flats = models.ManyToManyField(
         'Flat',
         related_name='owners',
-        verbose_name='Квартиры в собственности'
+        verbose_name='Квартиры в собственности',
+        null=True, blank=True
     )
 
     def __str__(self):
@@ -22,7 +23,9 @@ class Owner(models.Model):
 
 
 class Flat(models.Model):
-    new_building = models.BooleanField(null=True, blank=True)
+    new_building = models.BooleanField(verbose_name='Новоcтройка',
+                                       db_index=True,
+                                       null=True, blank=True)
     created_at = models.DateTimeField(
         'Когда создано объявление',
         default=timezone.now,
@@ -68,6 +71,7 @@ class Flat(models.Model):
     who_liked = models.ManyToManyField(
         User,
         verbose_name='Кто лайкнул',
+        related_name='liked_flats',
         blank=True
     )
     
